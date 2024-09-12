@@ -13,7 +13,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			colors: {
-				primary: "rgb(212 177 255)",
+				purple: "rgb(212 177 255)",
 				dark: "rgb(35 37 40)",
 				light: "#f0f0f0",
 				background: 'hsl(var(--background))',
