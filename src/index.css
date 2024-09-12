@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 @layer base {
   html {
@@ -68,5 +68,32 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  body {
+    background-color: #f0f0f0;
+  }
+}
+.container {
+  max-width: 1440px;
+}
+.inner__container {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+@media (max-width: 1024px) {
+  .inner__container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media (min-width: 1440px) {
+  .inner__container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container {
+    margin: 0 auto;
   }
 }
