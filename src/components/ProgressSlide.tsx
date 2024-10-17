@@ -14,7 +14,7 @@ export default function ProgressSlide({
     <button
       data-progress={`${progress}`}
       onClick={handleClick}
-      className={`h-5 w-[30%] rounded-full ${
+      className={`h-1 w-[30%] rounded-full ${
         isFilled ? "bg-purple" : "bg-gray-400"
       }`}
     ></button>
