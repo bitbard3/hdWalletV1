@@ -13,6 +13,9 @@ const initialState: AuthState = {
   account: 0,
 };
 
+export type BlockchainType = keyof typeof Blockchains | null;
+
+      
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -22,7 +25,7 @@ export const authSlice = createSlice({
     },
     updateBlockchain: (
       state,
-      action: PayloadAction<keyof typeof Blockchains>
+      action: PayloadAction<BlockchainType>
     ) => {
       state.blockchain = action.payload;
     },
@@ -35,3 +38,4 @@ export const authSlice = createSlice({
 export const { updateStep, updateBlockchain, updateAccount } =
   authSlice.actions;
 export default authSlice.reducer;
+
