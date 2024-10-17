@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="container h-screen">
         <div className="form__container">
-          <div className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-16">
+          <div className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-20">
             <ProgressBar />
             <StepForm />
           </div>
