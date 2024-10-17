@@ -1,16 +1,16 @@
-import { BlockchainConfig } from "@/constants/blockchainConfig";
+import { Blockchains } from "@/constants/blockchainConfig";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 export interface AuthState {
   currentStep: number;
-  blockchain: keyof BlockchainConfig | null;
-  account:number;
+  blockchain: keyof typeof Blockchains | null;
+  account: number;
 }
 
 const initialState: AuthState = {
   currentStep: 1,
   blockchain: null,
-  account:0
+  account: 0,
 };
 
 export const authSlice = createSlice({
@@ -22,7 +22,7 @@ export const authSlice = createSlice({
     },
     updateBlockchain: (
       state,
-      action: PayloadAction<keyof BlockchainConfig>
+      action: PayloadAction<keyof typeof Blockchains>
     ) => {
       state.blockchain = action.payload;
     },
@@ -32,5 +32,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { updateStep,updateBlockchain,updateAccount } = authSlice.actions;
+export const { updateStep, updateBlockchain, updateAccount } =
+  authSlice.actions;
 export default authSlice.reducer;
