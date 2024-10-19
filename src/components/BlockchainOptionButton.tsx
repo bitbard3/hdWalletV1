@@ -20,6 +20,7 @@ export default function BlockchainOptionButton(
         name="blockchain"
         value={props.name}
         checked={props.isChecked}
+        onChange={() => props.onChange(props.name)}
         className="hidden"
       />
       <button
