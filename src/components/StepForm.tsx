@@ -1,7 +1,7 @@
 import { RootState } from "@/app/store";
 import React from "react";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
 import BlockChainForm from "./BlockChainForm";
 import MnemonicForm from "./MnemonicForm";
 import WelcomeForm from "./WelcomeForm";
@@ -21,7 +21,7 @@ export default function StepForm() {
       {currentStep < 4 && (
         <motion.div
           key={currentStep}
-          className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-20"
+          className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-20 mt-[80px]"
           initial="initial"
           animate="animate"
           exit="exit"
