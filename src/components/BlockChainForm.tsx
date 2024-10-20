@@ -4,13 +4,21 @@ import BlockchainOptionButton from "./BlockchainOptionButton";
 import PrimaryButton from "./PrimaryButton";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
-import { BlockchainType, updateBlockchain, updateStep } from "@/features/authSlicer";
+import {
+  BlockchainType,
+  updateBlockchain,
+  updateStep,
+} from "@/features/authSlicer";
 
 export default function BlockChainForm(): JSX.Element {
   const currentStep = useSelector((state: RootState) => state.auth.currentStep);
-  const currentSelectedBlockchain = useSelector((state:RootState)=>state.auth.blockchain)
+  const currentSelectedBlockchain = useSelector(
+    (state: RootState) => state.auth.blockchain
+  );
   const blockchains = Blockchains;
-  const [selectedBlockchain, setSelectedBlockchain] = useState<BlockchainType>(currentSelectedBlockchain);
+  const [selectedBlockchain, setSelectedBlockchain] = useState<BlockchainType>(
+    currentSelectedBlockchain
+  );
   const dispatch = useDispatch();
   const handleBlockchainChange = (name: string) => {
     setSelectedBlockchain(name);
