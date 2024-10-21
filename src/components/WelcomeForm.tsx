@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { updateStep } from "@/features/authSlicer";
@@ -17,7 +17,7 @@ export default function WelcomeForm() {
         Continue to manage and view your wallets
       </p>
       <div className="mt-12 mb-5 w-full">
-        <PrimaryButton text="continue" onClick={onContinueHandler} />
+        <Button className="w-full py-2.5 text-lg bg-purple text-gray-900" text="continue" onClick={onContinueHandler} />
       </div>
     </div>
   );

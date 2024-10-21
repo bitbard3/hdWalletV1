@@ -1,11 +1,10 @@
-import { Blockchains } from "@/constants/blockchainConfig";
+import { Blockchains, BlockchainType } from "@/constants/blockchainConfig";
 import React, { useState } from "react";
 import BlockchainOptionButton from "./BlockchainOptionButton";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import {
-  BlockchainType,
   updateBlockchain,
   updateStep,
 } from "@/features/authSlicer";
@@ -45,7 +44,7 @@ export default function BlockChainForm(): JSX.Element {
       </div>
 
       <div className="pb-8 w-full">
-        <PrimaryButton text="Next" onClick={onNextHandler} />
+        <Button className="w-full py-2.5 text-lg bg-purple text-gray-900"  text="Next" onClick={onNextHandler} />
       </div>
     </div>
   );

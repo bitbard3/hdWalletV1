@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { generateMnemonic } from "bip39";
 import { Buffer } from "buffer";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import {
@@ -61,7 +61,7 @@ export default function MnemonicForm() {
         ))}
       </div>
       <div className="mt-10 pb-4 w-full">
-        <PrimaryButton text="Generate Wallet" onClick={onNextHandler} />
+        <Button className="w-full py-2.5 text-lg bg-purple text-gray-900" text="Generate Wallet" onClick={onNextHandler} />
       </div>
     </div>
   );
