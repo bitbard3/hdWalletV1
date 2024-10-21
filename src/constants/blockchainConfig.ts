@@ -9,9 +9,7 @@ export type Blockchain = {
   icon: IconType;
 };
 
-export type BlockchainConfig = {
-  [key: string]: Blockchain;
-};
+export type BlockchainConfig = Record<string, Blockchain>;
 
 export const Blockchains: BlockchainConfig = {
   solana: {
@@ -33,3 +31,4 @@ export const getDerivationPath = (
   const account = selectAccount(store.getState());
   return path.replace("x", account.toString());
 };
+export type BlockchainType = keyof typeof Blockchains;

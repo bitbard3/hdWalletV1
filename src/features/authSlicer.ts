@@ -1,8 +1,7 @@
-import { Blockchains } from "@/constants/blockchainConfig";
+import { BlockchainType } from "@/constants/blockchainConfig";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export type BlockchainType = keyof typeof Blockchains;
 export type KeyType = {
   publicKey: string;
   privateKey: string;
@@ -17,7 +16,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   currentStep: 1,
-  blockchain: "solana",
+  blockchain: "",
   account: 0,
   mnemonic: "",
   keys: [],
