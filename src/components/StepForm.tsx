@@ -19,20 +19,22 @@ export default function StepForm() {
   return (
     <>
       {currentStep < 4 && (
-        <motion.div
-          key={currentStep}
-          className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-20 mt-[80px]"
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          variants={variants}
-          transition={{ duration: 0.7 }}
-        >
-          <ProgressBar />
-          {currentStep === 1 && <BlockChainForm />}
-          {currentStep === 2 && <MnemonicForm />}
-          {currentStep === 3 && <WelcomeForm />}
-        </motion.div>
+        <div className="form__container">
+          <motion.div
+            key={currentStep}
+            className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-20 mt-[80px]"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={variants}
+            transition={{ duration: 0.7 }}
+          >
+            <ProgressBar />
+            {currentStep === 1 && <BlockChainForm />}
+            {currentStep === 2 && <MnemonicForm />}
+            {currentStep === 3 && <WelcomeForm />}
+          </motion.div>
+        </div>
       )}
     </>
   );
