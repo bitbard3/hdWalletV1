@@ -7,7 +7,7 @@ import { RootState } from "@/app/store";
 import {
   updateStep,
   updateMnenomic,
-  addAccount,
+  addKeys,
   updateAccount,
 } from "@/features/authSlicer";
 import { generateWallet } from "@/lib/utlils/generateWallet";
@@ -39,7 +39,7 @@ export default function MnemonicForm() {
     dispatch(updateStep(currentStep + 1));
     if (account === 0) {
       const keys = await generateWallet(mnemonicPhrase, blockchain);
-      dispatch(addAccount(keys));
+      dispatch(addKeys(keys));
       dispatch(updateAccount(account + 1));
     }
   };
@@ -61,7 +61,11 @@ export default function MnemonicForm() {
         ))}
       </div>
       <div className="mt-10 pb-4 w-full">
-        <Button className="w-full py-2.5 text-lg bg-purple text-gray-900" text="Generate Wallet" onClick={onNextHandler} />
+        <Button
+          className="w-full py-2.5 text-lg bg-purple text-gray-900"
+          text="Generate Wallet"
+          onClick={onNextHandler}
+        />
       </div>
     </div>
   );

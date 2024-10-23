@@ -39,7 +39,7 @@ export const authSlice = createSlice({
     updateMnenomic: (state, action: PayloadAction<string>) => {
       state.mnemonic = action.payload;
     },
-    addAccount: (state, action: PayloadAction<KeyType>) => {
+    addKeys: (state, action: PayloadAction<KeyType>) => {
       state.keys.push(action.payload);
     },
   },
@@ -50,6 +50,6 @@ export const {
   updateBlockchain,
   updateAccount,
   updateMnenomic,
-  addAccount,
+  addKeys,
 } = authSlice.actions;
 export default authSlice.reducer;

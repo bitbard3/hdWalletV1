@@ -1,5 +1,5 @@
-import { getDerivationPath } from "@/constants/blockchainConfig";
-import { BlockchainType, KeyType } from "@/features/authSlicer";
+import { BlockchainType, getDerivationPath } from "@/constants/blockchainConfig";
+import {  KeyType } from "@/features/authSlicer";
 import { mnemonicToSeed } from "bip39";
 import { derivePath } from "ed25519-hd-key";
 import { Buffer } from "buffer";
