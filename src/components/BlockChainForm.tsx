@@ -26,10 +26,26 @@ export default function BlockChainForm(): JSX.Element {
     (state: RootState) => state.auth.mnemonic
   );
   const [mnemonicPhrase, setMnemonicPhrase] = useState<string>("");
-
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
   const [selectedBlockchain, setSelectedBlockchain] = useState<BlockchainType>(
     currentSelectedBlockchain
   );
+
+  const onNextHandler = async () => {
+    if (account === 0 || selectedBlockchain != currentSelectedBlockchain) {
+      if (selectedBlockchain == "") {
+        return;
+      }
+      dispatch(updateAccount(0));
+      dispatch(updateKeys(null));
+      dispatch(updateBlockchain(selectedBlockchain));
+      const keys = await generateWallet(mnemonicPhrase, selectedBlockchain);
+      dispatch(updateKeys(keys));
+      dispatch(updateAccount(account + 1));
+      setButtonDisabled(false);
+      dispatch(updateStep(currentStep + 1));
+    }
+  };
 
   useEffect(() => {
     if (!mnemonicFromState) {
@@ -43,18 +59,7 @@ export default function BlockChainForm(): JSX.Element {
 
   const handleBlockchainChange = (name: string) => {
     setSelectedBlockchain(name);
-  };
-  const onNextHandler = async () => {
-    if (account === 0 || selectedBlockchain != currentSelectedBlockchain) {
-      dispatch(updateAccount(0));
-      dispatch(updateKeys(null));
-      dispatch(updateBlockchain(selectedBlockchain));
-      const keys = await generateWallet(mnemonicPhrase, selectedBlockchain);
-      dispatch(updateKeys(keys));
-      dispatch(updateAccount(account + 1));
-    }
-    dispatch(updateMnenomic(mnemonicPhrase));
-    dispatch(updateStep(currentStep + 1));
+    setButtonDisabled(false);
   };
 
   return (
@@ -76,9 +81,10 @@ export default function BlockChainForm(): JSX.Element {
 
       <div className="pb-8 w-full">
         <Button
-          className="w-full py-2.5 text-lg bg-purple text-gray-900"
+          className="w-full py-2.5 text-lg bg-purple text-gray-900 disabled:bg-neutral-500"
           text="Next"
           onClick={onNextHandler}
+          disabled={buttonDisabled}
         />
       </div>
     </div>

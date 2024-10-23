@@ -5,6 +5,7 @@ interface ButtonProps {
   text: string;
   onClick: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
@@ -15,6 +16,7 @@ export default function Button(props: ButtonProps) {
         props.className
       )}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.text}
     </button>
