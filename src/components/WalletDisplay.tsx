@@ -1,22 +1,31 @@
 import { RootState } from "@/app/store";
 
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import { generateWallet } from "@/lib/utlils/generateWallet";
 import { addKeys } from "@/features/authSlicer";
+import IconComponent from "@/lib/utlils/icons";
+import { LuEye , LuEyeOff } from "react-icons/lu";
+import { copyToClipboard } from "@/lib/utlils/utils";
 
 export default function WalletDisplay() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state: RootState) => state.auth.blockchain);
-
   const mnemonic = useSelector((state: RootState) => state.auth.mnemonic);
   const keys = useSelector((state: RootState) => state.auth.keys);
-  console.log(keys);
+  const [visibleKeys, setVisibleKeys] = useState<Record<string, boolean>>({});
 
   const onAddHandler = async () => {
     const wallet = await generateWallet(mnemonic, blockchain);
     dispatch(addKeys(wallet));
+  };
+
+  const onKeysVisibiltyToggle = (pk: string) => {
+    setVisibleKeys((prev) => ({
+      ...prev,
+      [pk]: !prev[pk],
+    }));
   };
 
   const onClearHandler = () => {};
@@ -41,20 +50,39 @@ export default function WalletDisplay() {
       </div>
       <div className="grid grid-cols-1  mt-10  gap-y-10">
         {keys.map((key, index) => (
-          <div className="flex flex-col bg-dark rounded-md pt-8 ">
+          <div
+            className="flex flex-col bg-dark rounded-md pt-8 "
+            key={key.publicKey}
+          >
             <div className="flex justify-between items-center px-16">
               <p className="text-light text-3xl font-medium">
                 Account {index + 1}
               </p>
             </div>
-            <div className="flex flex-col mt-6 bg-light bg-opacity-10 py-3  px-16 rounded-t-3xl">
+            <div className="flex flex-col mt-6 bg-light bg-opacity-10 py-4  px-16 rounded-t-3xl">
               <p className="text-white text-xl font-medium">Public Key</p>
-              <p className="text-md mt-2 text-white overflow-hidden overflow-ellipsis">
+              <p
+                onClick={() => copyToClipboard(key.publicKey)}
+                className="text-md mt-2 text-white overflow-hidden cursor-pointer overflow-ellipsis"
+              >
                 {key.publicKey}
               </p>
-              <p className="text-white text-xl font-medium mt-5">Public Key</p>
-              <p className="text-md mt-2 text-white overflow-hidden overflow-ellipsis">
-                {key.privateKey}
+              <p className="text-white text-xl font-medium mt-7">Private Key</p>
+              <p className="text-md mt-2 text-white overflow-hidden overflow-ellipsis flex justify-between items-center gap-x-5">
+                <span
+                  className="overflow-hidden overflow-ellipsis cursor-pointer"
+                  onClick={() => copyToClipboard(key.privateKey)}
+                >
+                  {visibleKeys[key.publicKey]
+                    ? key.privateKey
+                    : "•".repeat(key.privateKey.length)}
+                </span>
+                <span
+                  onClick={() => onKeysVisibiltyToggle(key.publicKey)}
+                  className="p-2 hover:bg-neutral-600 rounded-sm text-lg hover:cursor-pointer transition-all duration-150"
+                >
+                 {visibleKeys[key.publicKey]? <IconComponent icon={LuEyeOff} />:<IconComponent icon={LuEye}/>}
+                </span>
               </p>
             </div>
           </div>
