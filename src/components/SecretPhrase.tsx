@@ -8,6 +8,9 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { motion } from "framer-motion";
+import { copyToClipboard } from "@/lib/utlils/utils";
+import { FiCopy } from "react-icons/fi";
+import IconComponent from "@/lib/utlils/icons";
 
 export default function SecretPhrase() {
   const mnemonic = useSelector((state: RootState) => state.auth.mnemonic);
@@ -18,6 +21,11 @@ export default function SecretPhrase() {
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0.5, y: -20 },
   };
+
+  const onCopyHandler = () => {
+    copyToClipboard(mnemonic);
+  };
+
   return (
     <>
       <Accordion
@@ -30,7 +38,10 @@ export default function SecretPhrase() {
             Your Secret Phrase
           </AccordionTrigger>
           <AccordionContent>
-            <div className="grid w-full grid-cols-4 gap-4 mt-12">
+            <div
+              onClick={onCopyHandler}
+              className="grid hover:cursor-pointer w-full grid-cols-4 gap-4 pt-12"
+            >
               {mnemonicArr.map((word) => (
                 <motion.div
                   key={word}
@@ -39,11 +50,12 @@ export default function SecretPhrase() {
                   animate="animate"
                   exit="exit"
                   transition={{ duration: 0.4 }}
-                  className="bg-dark border border-neutral-500 text-light text-lg pl-4 py-3 rounded-md"
+                  className="bg-dark border border-neutral-500 text-light text-lg pl-4 py-3 rounded-md "
                 >
                   {word}
                 </motion.div>
               ))}
+              <p className="text-neutral-400 mt-5 text-lg flex items-center gap-x-2 hover:text-light transition-all duration-150"><IconComponent icon={FiCopy}/> Click anywhere to copy</p>
             </div>
           </AccordionContent>
         </AccordionItem>
