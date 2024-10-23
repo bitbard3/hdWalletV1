@@ -41,7 +41,12 @@ export const authSlice = createSlice({
     },
     addKeys: (state, action: PayloadAction<KeyType>) => {
       state.keys.push(action.payload);
+      state.account+=1
     },
+    removeKeys: (state, action: PayloadAction<string>) => {
+      state.keys = state.keys.filter((key) => key.publicKey !== action.payload);
+      state.account-=1
+  }
   },
 });
 
@@ -51,5 +56,6 @@ export const {
   updateAccount,
   updateMnenomic,
   addKeys,
+  removeKeys
 } = authSlice.actions;
 export default authSlice.reducer;

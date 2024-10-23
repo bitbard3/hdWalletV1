@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import { generateWallet } from "@/lib/utlils/generateWallet";
-import { addKeys } from "@/features/authSlicer";
+import { addKeys, removeKeys } from "@/features/authSlicer";
 import IconComponent from "@/lib/utlils/icons";
-import { LuEye , LuEyeOff } from "react-icons/lu";
+import { LuEye, LuEyeOff } from "react-icons/lu";
+import { AiOutlineDelete } from "react-icons/ai";
 import { copyToClipboard } from "@/lib/utlils/utils";
 
 export default function WalletDisplay() {
@@ -27,7 +28,10 @@ export default function WalletDisplay() {
       [pk]: !prev[pk],
     }));
   };
-
+  const onDeleteWallet = (pk:string)=>{
+   dispatch(removeKeys(pk))
+   
+  }
   const onClearHandler = () => {};
   return (
     <div className="mt-20 flex flex-col w-full">
@@ -54,10 +58,11 @@ export default function WalletDisplay() {
             className="flex flex-col bg-dark rounded-md pt-8 "
             key={key.publicKey}
           >
-            <div className="flex justify-between items-center px-16">
+            <div className="flex justify-between items-center px-16 gap-x-5">
               <p className="text-light text-3xl font-medium">
                 Account {index + 1}
               </p>
+              <p onClick={()=>onDeleteWallet(key.publicKey)} className="text-red-700 text-xl cursor-pointer "><IconComponent icon={AiOutlineDelete}/></p>
             </div>
             <div className="flex flex-col mt-6 bg-light bg-opacity-10 py-4  px-16 rounded-t-3xl">
               <p className="text-white text-xl font-medium">Public Key</p>
@@ -81,7 +86,11 @@ export default function WalletDisplay() {
                   onClick={() => onKeysVisibiltyToggle(key.publicKey)}
                   className="p-2 hover:bg-neutral-600 rounded-sm text-lg hover:cursor-pointer transition-all duration-150"
                 >
-                 {visibleKeys[key.publicKey]? <IconComponent icon={LuEyeOff} />:<IconComponent icon={LuEye}/>}
+                  {visibleKeys[key.publicKey] ? (
+                    <IconComponent icon={LuEyeOff} />
+                  ) : (
+                    <IconComponent icon={LuEye} />
+                  )}
                 </span>
               </p>
             </div>
