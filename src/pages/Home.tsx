@@ -1,6 +1,7 @@
 import { RootState } from "@/app/store";
 import SecretPhrase from "@/components/SecretPhrase";
 import StepForm from "@/components/StepForm";
+import WalletDisplay from "@/components/WalletDisplay";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -13,8 +14,9 @@ export default function Home() {
         <StepForm />
         {currentStep > 3 && (
           <div className="inner__container">
-            <div className="flex pt-[150px]">
+            <div className="flex pt-[150px] flex-col">
               <SecretPhrase />
+              <WalletDisplay />
             </div>
           </div>
         )}
