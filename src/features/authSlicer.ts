@@ -39,14 +39,17 @@ export const authSlice = createSlice({
     updateMnenomic: (state, action: PayloadAction<string>) => {
       state.mnemonic = action.payload;
     },
-    addKeys: (state, action: PayloadAction<KeyType>) => {
-      state.keys.push(action.payload);
-      state.account+=1
+    updateKeys: (state, action: PayloadAction<KeyType | null>) => {
+      if (action.payload === null) {
+        state.keys = [];
+      } else {
+        state.keys.push(action.payload);
+      }
     },
     removeKeys: (state, action: PayloadAction<string>) => {
       state.keys = state.keys.filter((key) => key.publicKey !== action.payload);
-      state.account-=1
-  }
+      state.account -= 1;
+    },
   },
 });
 
@@ -55,7 +58,7 @@ export const {
   updateBlockchain,
   updateAccount,
   updateMnenomic,
-  addKeys,
-  removeKeys
+  updateKeys,
+  removeKeys,
 } = authSlice.actions;
 export default authSlice.reducer;

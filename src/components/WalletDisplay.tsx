@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import { generateWallet } from "@/lib/utlils/generateWallet";
-import { addKeys, removeKeys } from "@/features/authSlicer";
+import { updateKeys, removeKeys, updateAccount } from "@/features/authSlicer";
 import IconComponent from "@/lib/utlils/icons";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -15,11 +15,13 @@ export default function WalletDisplay() {
   const blockchain = useSelector((state: RootState) => state.auth.blockchain);
   const mnemonic = useSelector((state: RootState) => state.auth.mnemonic);
   const keys = useSelector((state: RootState) => state.auth.keys);
+  const account = useSelector((state: RootState) => state.auth.account);
   const [visibleKeys, setVisibleKeys] = useState<Record<string, boolean>>({});
 
   const onAddHandler = async () => {
     const wallet = await generateWallet(mnemonic, blockchain);
-    dispatch(addKeys(wallet));
+    dispatch(updateAccount(account + 1));
+    dispatch(updateKeys(wallet));
   };
 
   const onKeysVisibiltyToggle = (pk: string) => {
@@ -28,10 +30,9 @@ export default function WalletDisplay() {
       [pk]: !prev[pk],
     }));
   };
-  const onDeleteWallet = (pk:string)=>{
-   dispatch(removeKeys(pk))
-   
-  }
+  const onDeleteWallet = (pk: string) => {
+    dispatch(removeKeys(pk));
+  };
   const onClearHandler = () => {};
   return (
     <div className="mt-20 flex flex-col w-full">
@@ -62,7 +63,12 @@ export default function WalletDisplay() {
               <p className="text-light text-3xl font-medium">
                 Account {index + 1}
               </p>
-              <p onClick={()=>onDeleteWallet(key.publicKey)} className="text-red-700 text-xl cursor-pointer "><IconComponent icon={AiOutlineDelete}/></p>
+              <p
+                onClick={() => onDeleteWallet(key.publicKey)}
+                className="text-red-700 text-xl cursor-pointer "
+              >
+                <IconComponent icon={AiOutlineDelete} />
+              </p>
             </div>
             <div className="flex flex-col mt-6 bg-light bg-opacity-10 py-4  px-16 rounded-t-3xl">
               <p className="text-white text-xl font-medium">Public Key</p>

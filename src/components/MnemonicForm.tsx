@@ -1,47 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { generateMnemonic } from "bip39";
 import { Buffer } from "buffer";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
-import {
-  updateStep,
-  updateMnenomic,
-  addKeys,
-  updateAccount,
-} from "@/features/authSlicer";
-import { generateWallet } from "@/lib/utlils/generateWallet";
+import { updateStep } from "@/features/authSlicer";
 window.Buffer = Buffer;
 
 export default function MnemonicForm() {
   const dispatch = useDispatch();
+  const mnemonic = useSelector((state: RootState) => state.auth.mnemonic);
   const currentStep = useSelector((state: RootState) => state.auth.currentStep);
-  const blockchain = useSelector((state: RootState) => state.auth.blockchain);
-  const account = useSelector((state: RootState) => state.auth.account);
-  const mnemonicFromState = useSelector(
-    (state: RootState) => state.auth.mnemonic
-  );
-  const [mnemonicPhrase, setMnemonicPhrase] = useState<string>("");
+  const mnemonicArr = mnemonic.split(" ");
 
-  useEffect(() => {
-    if (!mnemonicFromState) {
-      const newMnemonic = generateMnemonic();
-      setMnemonicPhrase(newMnemonic);
-      dispatch(updateMnenomic(newMnemonic));
-    } else {
-      setMnemonicPhrase(mnemonicFromState);
-    }
-  }, [mnemonicFromState, dispatch]);
-
-  const mnemonicArr = mnemonicPhrase.split(" ");
-
-  const onNextHandler = async () => {
+  const onNextHandler = () => {
     dispatch(updateStep(currentStep + 1));
-    if (account === 0) {
-      const keys = await generateWallet(mnemonicPhrase, blockchain);
-      dispatch(addKeys(keys));
-      dispatch(updateAccount(account + 1));
-    }
   };
 
   return (
@@ -63,7 +34,7 @@ export default function MnemonicForm() {
       <div className="mt-10 pb-4 w-full">
         <Button
           className="w-full py-2.5 text-lg bg-purple text-gray-900"
-          text="Generate Wallet"
+          text="Continue"
           onClick={onNextHandler}
         />
       </div>
