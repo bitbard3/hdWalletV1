@@ -31,6 +31,14 @@ export default function BlockChainForm(): JSX.Element {
     currentSelectedBlockchain
   );
 
+  useEffect(() => {
+    setButtonDisabled(!selectedBlockchain);
+  }, [selectedBlockchain]);
+
+  useEffect(() => {
+    setSelectedBlockchain(currentSelectedBlockchain);
+  }, [currentSelectedBlockchain]);
+
   const onNextHandler = async () => {
     if (account === 0 || selectedBlockchain != currentSelectedBlockchain) {
       if (selectedBlockchain == "") {
@@ -59,7 +67,6 @@ export default function BlockChainForm(): JSX.Element {
 
   const handleBlockchainChange = (name: string) => {
     setSelectedBlockchain(name);
-    setButtonDisabled(false);
   };
 
   return (
@@ -78,7 +85,6 @@ export default function BlockChainForm(): JSX.Element {
           />
         ))}
       </div>
-
       <div className="pb-8 w-full">
         <Button
           className="w-full py-2.5 text-lg bg-purple text-gray-900 disabled:bg-neutral-500"
