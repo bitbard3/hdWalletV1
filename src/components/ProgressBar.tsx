@@ -25,7 +25,7 @@ export default function ProgressBar() {
   }, [keys.length]);
 
   return (
-    <div className="pt-10 flex justify-between w-full">
+    <div className=" flex justify-between w-[40%]">
       {Array.from({ length: STEPS }, (_, index) => {
         const stepNumber = index + 1;
         return (
