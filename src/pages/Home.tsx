@@ -1,4 +1,5 @@
 import { RootState } from "@/app/store";
+import Footer from "@/components/footer";
 import SecretPhrase from "@/components/SecretPhrase";
 import StepForm from "@/components/StepForm";
 import WalletDisplay from "@/components/WalletDisplay";
@@ -18,6 +19,7 @@ export default function Home() {
               <SecretPhrase />
               <WalletDisplay />
             </div>
+            <Footer />
           </div>
         )}
       </div>
