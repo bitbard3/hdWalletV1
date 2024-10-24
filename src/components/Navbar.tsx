@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className="fixed top-0 w-full bg-dark py-5 z-10 navbar">
         <div className="container">
           <div className="inner__container">
-            <div className="flex items-center gap-x-2.5">
+            <div className="flex items-center justify-center md:justify-start gap-x-2.5">
               <p className="text-light text-3xl">
                 <IconComponent icon={TbShieldCheckeredFilled} />
               </p>

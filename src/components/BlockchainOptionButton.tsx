@@ -14,7 +14,7 @@ export default function BlockchainOptionButton(
   props: BlockchainOptionButtonProps
 ) {
   return (
-    <label className="flex items-center gap-2.5 justify-center w-[40%]">
+    <label className="flex items-center gap-2.5 justify-center w-[80%]  md:w-[40%]">
       <input
         type="radio"
         name="blockchain"

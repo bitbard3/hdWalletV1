@@ -17,11 +17,11 @@ export default function MnemonicForm() {
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-light font-medium text-3xl">Secret Recovery Phrase</p>
-      <p className="mt-4 text-xl text-yellow-500">
+      <p className="text-light font-medium text-2xl md:text-3xl text-center">Secret Recovery Phrase</p>
+      <p className="mt-2.5  md:mt-4  md:text-xl text-yellow-500">
         Save these words to recover your wallet
       </p>
-      <div className="w-full grid grid-cols-3 gap-3 mt-7">
+      <div className="w-full grid grid-cols-3 gap-2 md:gap-3 mt-7">
         {mnemonicArr.map((word, index) => (
           <div
             key={index}
@@ -33,7 +33,7 @@ export default function MnemonicForm() {
       </div>
       <div className="mt-10 pb-4 w-full">
         <Button
-          className="w-full py-2.5 text-lg bg-purple text-gray-900"
+          className="w-full py-2.5 md:text-lg bg-purple text-gray-900"
           text="Continue"
           onClick={onNextHandler}
         />

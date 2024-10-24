@@ -33,14 +33,17 @@ export default function SecretPhrase() {
         type="single"
         collapsible
       >
-        <AccordionItem className=" px-16 py-6  rounded-sm" value="item-1">
-          <AccordionTrigger className="text-3xl text-light font-medium ">
+        <AccordionItem
+          className=" px-8 md:px-16 py-6  rounded-sm"
+          value="item-1"
+        >
+          <AccordionTrigger className="text-2xl md:text-3xl text-light font-medium text-start">
             Your Secret Phrase
           </AccordionTrigger>
           <AccordionContent>
             <div
               onClick={onCopyHandler}
-              className="grid hover:cursor-pointer w-full grid-cols-4 gap-4 pt-12"
+              className="grid hover:cursor-pointer w-full grid-cols-2 md:grid-cols-4 gap-4 pt-12"
             >
               {mnemonicArr.map((word) => (
                 <motion.div
@@ -55,7 +58,9 @@ export default function SecretPhrase() {
                   {word}
                 </motion.div>
               ))}
-              <p className="text-neutral-400 mt-5 text-lg flex items-center gap-x-2 hover:text-light transition-all duration-150"><IconComponent icon={FiCopy}/> Click anywhere to copy</p>
+              <p className="text-neutral-400 col-span-2  mt-5 text-lg flex items-center gap-x-2 hover:text-light transition-all duration-150">
+                <IconComponent icon={FiCopy} /> Click anywhere to copy
+              </p>
             </div>
           </AccordionContent>
         </AccordionItem>

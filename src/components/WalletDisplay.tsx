@@ -35,32 +35,32 @@ export default function WalletDisplay() {
   };
   const onClearHandler = () => {};
   return (
-    <div className="mt-20 flex flex-col w-full">
-      <div className="flex justify-between w-full items-center">
-        <p className="text-dark font-bold text-4xl capitalize">
+    <div className="mt-12 md:mt-20 flex flex-col w-full">
+      <div className="flex justify-between flex-col md:flex-row gap-y-4 w-full items-center">
+        <p className="text-dark font-bold text-3xl md:text-4xl capitalize">
           Your {blockchain} Wallets
         </p>
         <div className="flex items-center gap-x-3">
           <Button
             text="add wallet"
-            className="bg-dark text-lg py-2 px-3 font-medium text-neutral-200"
+            className="bg-dark md:text-lg py-2 px-3 font-medium text-neutral-200"
             onClick={onAddHandler}
           />
           <Button
             text="clear wallets"
-            className="bg-red-700 text-neutral-200 py-2 px-3 text-lg"
+            className="bg-red-700 text-neutral-200 py-2 px-3 md:text-lg"
             onClick={onClearHandler}
           />
         </div>
       </div>
-      <div className="grid grid-cols-1  mt-10  gap-y-10">
+      <div className="grid grid-cols-1 mt-5 md:mt-10  gap-y-10">
         {keys.map((key, index) => (
           <div
-            className="flex flex-col bg-dark rounded-md pt-8 "
+            className="flex flex-col bg-dark rounded-md pt-5 md:pt-8 "
             key={key.publicKey}
           >
-            <div className="flex justify-between items-center px-16 gap-x-5">
-              <p className="text-light text-3xl font-medium">
+            <div className="flex justify-between items-center px-8 md:px-16 gap-x-5">
+              <p className="text-light text-2xl md:text-3xl font-medium">
                 Account {index + 1}
               </p>
               <p
@@ -70,7 +70,7 @@ export default function WalletDisplay() {
                 <IconComponent icon={AiOutlineDelete} />
               </p>
             </div>
-            <div className="flex flex-col mt-6 bg-light bg-opacity-10 py-4  px-16 rounded-t-3xl">
+            <div className="flex flex-col mt-6 bg-light bg-opacity-10 py-4 px-8  md:px-16 rounded-t-3xl">
               <p className="text-white text-xl font-medium">Public Key</p>
               <p
                 onClick={() => copyToClipboard(key.publicKey)}

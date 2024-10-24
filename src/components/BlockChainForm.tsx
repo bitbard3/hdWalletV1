@@ -71,10 +71,10 @@ export default function BlockChainForm(): JSX.Element {
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-light text-3xl font-medium mb-10">
+      <p className="text-light text-2xl md:text-3xl text-center font-medium mb-10">
         Select a Blockchain
       </p>
-      <div className="w-full flex-wrap flex justify-between mb-20">
+      <div className="w-full flex-wrap flex flex-col md:flex-row items-center md:items-start justify-between mb-16 md:mb-20 gap-y-3">
         {Object.keys(blockchains).map((blockchainKey) => (
           <BlockchainOptionButton
             key={blockchainKey}
@@ -87,7 +87,7 @@ export default function BlockChainForm(): JSX.Element {
       </div>
       <div className="pb-8 w-full">
         <Button
-          className="w-full py-2.5 text-lg bg-purple text-gray-900 disabled:bg-neutral-500"
+          className="w-full py-2.5 md:text-lg bg-purple text-gray-900 disabled:bg-neutral-500"
           text="Next"
           onClick={onNextHandler}
           disabled={buttonDisabled}

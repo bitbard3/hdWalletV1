@@ -25,7 +25,7 @@ export default function StepForm() {
         <div className="form__container">
           <motion.div
             key={currentStep}
-            className="form px-20 bg-dark rounded-sm py-5 h-fit flex flex-col gap-y-20 mt-[80px]"
+            className="form  px-10 md:px-20 bg-dark md:rounded-sm py-5 h-fit flex flex-col gap-y-20 mt-[80px]"
             initial="initial"
             animate="animate"
             exit="exit"
